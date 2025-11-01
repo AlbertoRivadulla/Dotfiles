@@ -1,0 +1,42 @@
+
+# MacOS custom configuration {{{
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/albertorivadullasanchez/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/albertorivadullasanchez/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/albertorivadullasanchez/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/albertorivadullasanchez/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Add qt5 to the path
+export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+# # For compilers to find qt5 I might need:
+# export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib" 
+# export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include"
+
+# Add the path of the brew-installed version of clang, so it is called by default
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+# This may be needed for compilers to find llvm
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+# Alias to backup the Obsidian vault to Github
+alias obsidian-backup="(cd $HOME/Documents/Obsidian\ Vault ; sh backup_vault.sh)"
+
+alias rebuild="rm -rf build .ccls-cache .cache ./src/.ccls-cache && mkdir build && cd build && cmake .."
+
+# }}}
+
