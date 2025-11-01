@@ -29,17 +29,19 @@ fi
 
 # Replace the .zshrc in $HOME with the one built here
 if [[ -f $HOME/.zshrc ]]; then
-    if ! diff -q $TEMP_ZSHRC $HOME/.zshrc >/dev/null; then
+    if ! diff -q $HOME/.zshrc $TEMP_ZSHRC >/dev/null; then
         echo ".zshrc is already present in HOME. This is the diff with the one constructed:"
         echo
-        diff --color=always -u $TEMP_ZSHRC $HOME/.zshrc || true
+        diff --color=always -u $HOME/.zshrc $TEMP_ZSHRC || true
         echo
 
-        read -p "Apply changes? (y/N) " confirm
+        read -rp "Apply changes? (y/N) " confirm
         if [[ "$confirm" =~ ^[Yy]$ ]]; then
             cp $TEMP_ZSHRC $HOME/.zshrc
         fi
     else
         cp $TEMP_ZSHRC $HOME/.zshrc
     fi
+else
+    cp $TEMP_ZSHRC $HOME/.zshrc
 fi

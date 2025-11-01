@@ -123,6 +123,3 @@ function sshx (){
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# Add the directory to the scripts to the PATH
-export PATH="$PATH:/Users/albertorivadullasanchez/scripts"
-

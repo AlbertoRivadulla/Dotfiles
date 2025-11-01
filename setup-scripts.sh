@@ -28,9 +28,9 @@ else
     echo "The directory $scripts_dir is empty"
 fi
 
-# # Add the scripts dir to the path
-# cat << EOF >> ~/.zshrc
-#
-# # Add the directory to the scripts to the PATH
-# export PATH="\$PATH:$SCRIPT_DEST_DIR"
-# EOF
+# Add the scripts dir to the path
+cat << EOF >> $TEMP_ZSHRC
+
+# Add the directory to the scripts to the PATH
+export PATH="\$PATH:$SCRIPT_DEST_DIR"
+EOF
