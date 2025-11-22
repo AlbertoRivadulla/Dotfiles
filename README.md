@@ -30,3 +30,4 @@ My dotfiles for Linux and MacOS
     - [ ] fzf
     - [ ] fd
     - [ ] tmux
+- [ ] Script to compare the configurations in the current system

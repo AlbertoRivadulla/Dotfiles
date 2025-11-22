@@ -9,6 +9,18 @@ echo "====================================="
 echo "Setting up dotfiles"
 
 # Copy .zshrc
+
+# Setup zsh
+ZSH_PLUGINS_DIR=$HOME/.zsh
+if [[ ! -d $ZSH_PLUGINS_DIR/zsh-syntax-highlighting ]]; then
+	git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS_DIR/zsh-syntax-highlighting
+fi
+if [[ ! -d $ZSH_PLUGINS_DIR/zsh-autosuggestions ]]; then
+	git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGINS_DIR/zsh-autosuggestions
+fi
+if [[ ! -d $ZSH_PLUGINS_DIR/zsh-history-substring-search ]]; then
+	git clone --depth 1 https://github.com/zsh-users/zsh-history-substring-search $ZSH_PLUGINS_DIR/zsh-history-substring-search
+fi
 cp $DOT_FILES_SRC_DIR/.zshrc $TEMP_ZSHRC
 
 dotfiles_to_link=(

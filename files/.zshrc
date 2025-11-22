@@ -10,11 +10,10 @@
 #   8"   ""Y8d8P' "YY8P8P88P     `Y88P      `Y8P""Y8888PP
 #         ,d8I'                                          
 #       ,dP'8I                                           
-#      ,8"  8I     zsh configuration file                                  
+#      ,8"  8I     zsh configuration file                
 #      I8   8I                                           
 #      `8, ,8I                                           
-#       `Y8P"      Marcos Romero Lamas                                   
-#   
+#       `Y8P"                                            
 
 
 #############################################
@@ -65,8 +64,9 @@ fi
 
 # }}}
 
+# Completions and suggestions {{{
 
-# zsh completions {{{
+# history settings {{
 
 # save history
 export HISTFILE=$HOME/.zsh_history
@@ -75,30 +75,61 @@ export SAVEHIST=999999999
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 
+# }}
+
+# zsh-autosuggestions {{
+
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Try history first, then fall back to completion
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=241'
+# # Accept a single word with the right arrow
+# bindkey '^[[C' forward-word
+# Accept whole suggestion with Ctrl+F (recommended)
+bindkey '^F' autosuggest-accept
+
+# }}
+
+# native completion {{
+
+# Initialize completion system AFTER Oh My Zsh
+autoload -Uz compinit && compinit -i
+
 CASE_SENSITIVE="false"
-setopt MENU_COMPLETE
+# setopt MENU_COMPLETE
 setopt no_list_ambiguous
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")';
+
+# The following makes completion case insensitive, and ignore punctuation differences at the end and beginning
+# of the string
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|=' 'l:|= r:|='
 ls_colors="di=1;34:ln=36:so=35:pi=33:ex=32:bd=40;33:cd=40;33:su=37;41:sg=30;43:tw=30;42:ow=34;42"
 zstyle ':completion:*:default' list-colors "${(s.:.)ls_colors}"
-zstyle ':completion:*' menu yes select
-autoload -Uz compinit
-compinit
+zstyle ':completion::cd:' tag-order local-directories directory-stack path-directories
+zstyle ':completion::cd::directory-stack' menu yes select
+zstyle ':completion:*' menu select
+zstyle ':completion::-command-::' verbose false
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+ 
+# Shift+Tab to go back over the list of suggestions
+bindkey '^[[Z' reverse-menu-complete
+ 
+# }}
 
-if [[ -n $ZSH_INIT_COMMAND ]]; then
-  echo "Running: $ZSH_INIT_COMMAND"
-  eval "$ZSH_INIT_COMMAND"
-fi
 
 # }}}
+
+# Coloring {{{
 
 # colorize
 export LSCOLORS=GxFxCxDxBxegedabagaced
 alias ls="ls --color='auto'"
 
+# Syntax highlighting
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # }}}
-
-
+ 
 # finishing {{{
 
 # source local config file, if exists
