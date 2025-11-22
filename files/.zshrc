@@ -151,6 +151,3 @@ function sshx (){
   ssh -t $1 "export IS_TMUX=${IS_TMUX}; zsh"
 }
 
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
