@@ -128,6 +128,11 @@ alias ls="ls --color='auto'"
 # Syntax highlighting
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Remove underline from paths (files/directories)
+ZSH_HIGHLIGHT_STYLES[path]='none'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+
 # }}}
  
 # finishing {{{
