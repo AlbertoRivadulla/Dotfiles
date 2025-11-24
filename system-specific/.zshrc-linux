@@ -1,0 +1,18 @@
+
+# Linux custom configuration {{{
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+ # Solve problems when connecting with SSH to the working server
+ # export TERM=xterm-kitty
+ export TERM=xterm-256color
+ 
+ PATH="$HOME/.local/go/bin:$PATH"
+ PATH="$PATH:$HOME/go/bin"
+ 
+ export AWS_PROFILE="AlbertoRivadullaSanchez-mfa"
+ alias poetry='$HOME/.local/bin/poetry'
+
+# }}}
+
