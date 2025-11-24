@@ -25,6 +25,8 @@ fi
 # Particular configuration for MacOS or Linux
 if [[ $(uname) == "Darwin" ]]; then
 	bash $CURR_SCRIPT_DIR/setup-macos.sh
+elif [[ $(uname) == "Linux" ]]; then
+	bash $CURR_SCRIPT_DIR/setup-linux.sh
 fi
 
 # Replace the .zshrc in $HOME with the one built here

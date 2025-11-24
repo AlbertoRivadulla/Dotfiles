@@ -24,7 +24,7 @@ My dotfiles for Linux and MacOS
 - [x] Configuration for MacOS
     - [x] Commands to configure the OS
     - [x] kdd elements to the path on .zshrc
-- [ ] Configuration for Linux
+- [x] Configuration for Linux
 - Other software and tools to check
     - [ ] ripgrep
     - [ ] fzf
